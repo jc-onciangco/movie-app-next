@@ -6,13 +6,17 @@ const BackdropSection = ({allDetails}) => {
             <div className="hero-section">
                 <div className="backdrop">
                     {
-                        allDetails?
+                        allDetails.details.backdrop_path?
                         <ImageWrapper 
                             src={`https://image.tmdb.org/t/p/original/${allDetails.details.backdrop_path}`}
                             alt={allDetails.details.title} 
                             type={'backdrop'}
                          /> :
-                        <div className="placeholder" ></div>
+                         <ImageWrapper 
+                            src={`/plis.jpg`}
+                            alt={allDetails.details.title} 
+                            type={'placeholder'}
+                        /> 
                     }
                 </div>
             </div>
@@ -49,6 +53,18 @@ const BackdropSection = ({allDetails}) => {
                     height: 100%;
                     width: 100%;
                     background-color: black;
+                }
+
+                @media screen and (max-width: 560px) {
+                    .backdrop {
+                        position: relative;
+                        height: 100%;
+                        width: 100%;
+                        top: 0;
+                        left: 0;
+                        transform-origin: 50% 0;
+                        transform: scale(1.4);
+                    }
                 }
                 
                 `}

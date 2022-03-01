@@ -8,7 +8,7 @@ import MainLayout from '../../layout/MainLayout'
 import Navigation from '../../component/Navigation'
 import Details from '../../Component/MovieTvDetails/Details'
 
-const MovieId = () => {
+const TvId = () => {
     const router = useRouter()
     const [allDetails, setAllDetails] = useState(null)
 
@@ -17,7 +17,6 @@ const MovieId = () => {
     },[])
 
     useEffect(() => {
-        setAllDetails(null)
         if (router.isReady) {
             getMovieDetails(router.query.id)
         }
@@ -25,12 +24,12 @@ const MovieId = () => {
 
     const getMovieDetails = async id => {
         const apiKey = '3c543dcd94b82b3a00062a8ff1054b5e'
-        const {data: details} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?append_to_response=videos,images&api_key=${apiKey}`)
-        const {data: recommendations} = await axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}`)
-        const {data: castsAndCrews} = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`)
-        const {data: externalID} = await axios.get(`https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=${apiKey}`)
-        const {data: reviews} = await axios.get(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${apiKey}`)
-        const allData = {details, recommendations, castsAndCrews, externalID, reviews, type: 'movie'}
+        const {data: details} = await axios.get(`https://api.themoviedb.org/3/tv/${id}?append_to_response=videos,images&api_key=${apiKey}`)
+        const {data: recommendations} = await axios.get(`https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${apiKey}`)
+        const {data: castsAndCrews} = await axios.get(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`)
+        const {data: externalID} = await axios.get(`https://api.themoviedb.org/3/tv/${id}/external_ids?api_key=${apiKey}`)
+        const {data: reviews} = await axios.get(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${apiKey}`)
+        const allData = {details, recommendations, castsAndCrews, externalID, reviews, type: 'tv'}
         console.log(allData)
         setAllDetails(allData)
     }
@@ -56,4 +55,4 @@ const MovieId = () => {
     )
 }
 
-export default MovieId
+export default TvId

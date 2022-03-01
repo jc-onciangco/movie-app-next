@@ -22,10 +22,15 @@ export default function Home() {
   const [topThreeTrendingMovieThisWeek, setTopThreeTrendingMovieThisWeek] = useState(null)
   const [discoverMovies, setDiscoverMovies] = useState(null)
   const [trending, setTrending] = useState(null)
+  const [innerWidth, setInnerWidth] = useState(null)
   
   useEffect(() => {
     getTopThreeTrendingMovieThisWeek()
   },[])
+
+  useEffect(() => {
+    setInnerWidth(window.innerWidth)
+}, [])
 
   const getTopThreeTrendingMovieThisWeek = async () => {
     const {data} = await axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=3c543dcd94b82b3a00062a8ff1054b5e')
@@ -191,6 +196,18 @@ export default function Home() {
               left: 4%;
               bottom: 5%;
             } */
+
+            
+            @media screen and (max-width: 560px) {
+              .right-side {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                background-color: black;
+                padding: 8vh 0 0 0;
+              }
+            }
 
         `}
       </style>

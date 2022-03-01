@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 
 const Navigation = () => {
@@ -31,7 +31,14 @@ const Navigation = () => {
         }
     ]
 
+    const [innerWidth, setInnerWidth] = useState(null)
+
     useEffect(() => {
+        setInnerWidth(window.innerWidth)
+
+        window.addEventListener('resize', (e) => {
+            setInnerWidth(e.target.innerWidth)
+        })
         // var prevScrollpos = window.pageYOffset
 
         // window.onscroll = function() {
@@ -49,6 +56,7 @@ const Navigation = () => {
         //     prevScrollpos = currentScrollPos;
             
         // }
+        console.log(window.innerWidth)
     },[])
 
     return (
@@ -104,6 +112,20 @@ const Navigation = () => {
                         background-color: rgb(22, 22, 22);
                         z-index: 20;
                         transition: 0.3s linear;
+                    }
+
+                    @media screen and (max-width: 560px) {
+                        nav {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            width: 20%;
+                            background-color: rgb(22, 22, 22);
+                            z-index: 20;
+                            transition: 0.3s linear;
+                        }
                     }
 
                     .inner-container {
